@@ -1,34 +1,41 @@
-<div class="row">
-    <div class="col-md-6 col-md-offset-3">
-        <div class="panel panel-custom">
-            <div class="panel-heading">
-                <a id="logo" href="<?php echo BASE; ?>">
-                    <img class="img-responsive" src="<?php echo IMG; ?>hxphp-logo.png" alt="">
-                </a> <br>
-                <?php echo (isset($this->menu) ? $this->menu : ''); ?>
-            </div>
-            <div class="panel-body">                
-            <form class="form-horizontal">
-                  <div class="form-group">
-                    <label for="name" class="col-sm-2 control-label">Nome</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" name="name" id="name" placeholder="Nome Completo">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputPassword3" class="col-sm-2 control-label">senha</label>
-                    <div class="col-sm-10">
-                      <input type="password" class="form-control" id="inputPassword3" placeholder="senha">
-                    </div>
-                  </div>
-                  <div class="form-group">                    
-                  </div>
-                  <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                      <button type="submit" class="btn btn-success">Entrar</button>
-                    </div>
-                  </div>
-            </form>
+<div class=""> 
+  <?php echo (isset($this->menu) ? $this->menu : ''); ?>              
+    <form action="<?php echo BASE; ?>login/logar/" class="form-signin" method="post">
+      <div class="row margin">
+        <div class="input-field container" >
+         <i class="material-icons prefix pt-5">person_outline</i>
+          <input type="text" name="username" class="form-control validate" id="username" value="<?php echo $this->request->post('username') ?>" placeholder="Login" required autofocus>
+          <label for="username" data-error="Email Inválido" data-success="Email_Válido" ></label>              
+        </div>
+      </div>
+      <div class="row margin">
+        <div class="input-field container">
+          <i class="material-icons prefix pt-5">lock_outline</i>
+          <input class="form-control" id="password" name="password" type="password" value="<?php echo $this->request->post('username') ?>" placeholder="Senha" required>
+          <label for="password" class="sr-only"></label>
+        </div>
+      </div> 
+      <div class="form-group center">
+        <div class="col-sm-offset-3 col-sm-10">
+          <button type="submit" class="btn btn-success">Entrar</button><br><br>
+          <h6>Você não tem uma conta?</h6>
+          <p class="col s12 m12 l12 ml-2 mt-3">
+            <a href="recuperar" class="right">Esqueceu a Senha?</a>     
+            <a href="cadastro" class="left">Crie Grátis!</a>
+            <br><br>
+          </p>
+        </div>
+      </div>  
+
+      <!--      
+      <div class="form-group">
+        <label for="password" class="col-sm-3 control-label">Senha:</label>
+          <div class="col-sm-8">
+            <input type="password" name="password" class="form-control" id="password" placeholder="Sua senha">
+          </div>
+        </div>-->
+        
+                    </form>
             </div>
         </div>
     </div>

@@ -2,14 +2,14 @@
   //Constantes
   $configs = new HXPHP\System\Configs\Config;
   $configs->env->add('development');
-  $configs->env->development->baseURI = '/git/local1/';
+  $configs->env->development->baseURI = '/git/transporte/';
   $configs->env->development->database->setConnectionData(array(
     'host' => 'localhost',
     'user' => 'root',
     'password' => '',
     'dbname' => 'transporteapp'
   ));
-  $configs->env->development->auth->setURLs('/git/local1/home', '/git/local1/login');
+  $configs->env->development->auth->setURLs('/git/transporte/home', '/git/transporte/login');
   $configs->env->development->menu->setMenus(array(
     'Home/dashboard' => '%baseURI%/home',
     'Editar perfil/cog' => '%baseURI%/perfil/editar',

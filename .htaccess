@@ -3,11 +3,11 @@ Options -Indexes
 
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    RewriteBase /git/local1/
+    RewriteBase /git/transporte/
     RewriteRule ^index\.php$ - [L]
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule . /git/local1/index.php [L]
+    RewriteRule . /git/transporte/index.php [L]
 </IfModule>
 
 <Files ~ "^\.(htaccess|htpasswd)$">

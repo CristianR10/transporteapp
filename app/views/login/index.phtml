@@ -1,6 +1,6 @@
-<div class=""> 
-  <?php echo (isset($this->menu) ? $this->menu : ''); ?>              
-    <form action="<?php echo BASE; ?>login/logar/" class="form-signin" method="post">
+<div class="container hoverable white" style="position: relative; top:200px; right: 0; width: 300px; height: 400px;"> 
+  <?php echo (isset($this->menu) ? $this->menu : ''); ?>             
+    <form action="<?php echo BASE; ?>login/logar/" class="form-signin container" method="post" style="position: relative; top: 80px;">
       <div class="row margin">
         <div class="input-field container" >
          <i class="material-icons prefix pt-5">person_outline</i>
@@ -17,7 +17,7 @@
       </div> 
       <div class="form-group center">
         <div class="col-sm-offset-3 col-sm-10">
-          <button type="submit" class="btn btn-success">Entrar</button><br><br>
+          <button type="submit" class="btn btn-success" style ="border-radius: 20px; width: 90%;">Entrar</button><br><br>
           <h6>Você não tem uma conta?</h6>
           <p class="col s12 m12 l12 ml-2 mt-3">
             <a href="recuperar" class="right">Esqueceu a Senha?</a>     
@@ -35,7 +35,7 @@
           </div>
         </div>-->
         
-                    </form>
+    </form>
             </div>
         </div>
     </div>

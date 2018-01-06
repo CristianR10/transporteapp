@@ -5,11 +5,218 @@
                     ?>
                     <br><br>
                     <h4 class="alert alert-success">
-                        Uhull! Você foi Cadastrado com sucesso!
+                        Você foi Cadastrado com sucesso!
                     </h4>
-                    Olá <?php echo $view_user->name; ?>, seja bem vindo(a). <br>
+                    Olá Colaborador <?php echo $view_user->name; ?>, seja bem vindo(a). <br>
+
+  </div>
+
+      <link rel="stylesheet" type="text/css" href="cssaplic.css">
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">      
+      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/> 
+      <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+      <script type="text/javascript" src="js/materialize.js"></script>
+
+    <style>
+      #nave{
+        width: 100%;
+        height: 100px;
+      }
+      #map {
+        width:  100%;
+        height: 1000px;
+        margin: 0;
+      }
+     
+    </style>
+  
+    <!--<div id="site">
+      <form method="post" action="index.php">
+        
+          <nav class="#ffc400 amber accent-3" id="nave">
+            <div class="nav-wrapper">
+              <a href="cadastrar.php" id="float" class="btn-large btn-floating pulse">
+              <i class="material-icons">add</i>
+              </a>     
+            </div>
+          </nav>
+        
+      </form> -->
+      <!--Código da versão 1.0-->
+    <div class="card">
+      <div class="card-image waves-effect waves-block waves-light">
+        <!-- Execução do mapa -->
+        <div id="map"></div>
+      </div>
+    <div class="card-content">
+      <span class="card-title activator grey-text text-darken-4">Pontos de passagem<i class="material-icons right">add_location</i></span>
+      <p>
+        <ul id="slide-out" class="side-nav">
+          <li><div class="user-view">
+          <div class="background">
+            <img src="images/city.jpg">
+          </div>
+          <a href="#!user"><img class="circle" src="images/jaja.jpg"></a>
+          <a href="#!name"><span class="name"><?php echo $view_user->name; ?></span></a>
+          <a href="#!email"><span class="email"><?php echo $view_user->email; ?></span></a>
+          </div></li>
+          <li><a href="#!"><i class="material-icons">airport_shuttle</i><?php echo "Tio "; echo $view_user->name; ?></a></li>
+          <!--<li><a href="#!"></a></li>-->
+          <li><div class="divider"></div></li>
+           <!--<li><a class="subheader">Subheader</a></li>-->
+          <li><a class="waves-effect" href="consulta.php">Consulta</a></li>
+          <li><a class="waves-effect" href="sair.php"></a></li>
+        </ul>
+        <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+
+      </p>
+
+<!--  ***********Funcionalidade da sideNav************ -->
+          <script type="text/javascript">
+            $(document).ready(function(){
+            $('.parallax').parallax();
+          });
+          </script>
+          <script>
+           $( document ).ready(function(){
+           $(".button-collapse").sideNav();
+          })
+          </script>
+        
+    </div>
+    <div class="card-reveal">
+      <span class="card-title grey-text text-darken-4">Cadastre seu Ponto<i class="material-icons right">close</i></span>
+      <p>
+     
+
+</style>
+    <div class="center">
+    <form method="POST" class="container #ffffff white" action="processa_cad.php">
+      <div class="row">
+            <div class="input-field col s12 ">
+              <!-- <img src="../../images/logo/login-logo.png" alt="" class="circle responsive-img valign profile-image-login">-->
+              <i class="material-icons large center center "> directions_bus </i>
+            </div>
+          </div>
+    <div class="row margin">
+      <div class="input-field container" >            
+        <input type="text" name="name" placeholder="Nome">
+        <input type="text" name="address" placeholder="Digite o número e o Logradouro">
+        <input type="text" name="lat" placeholder="Digite a latitude">
+        <input type="text" name="lng" placeholder="Digite a mensagem">  
+      </div>
+    </div>
+      
+      <input type="submit" class="btn" value="Cadastrar"><br><br>    
+    </form>
+      </p>
+    </div>
+  </div>
+      <div id="trajeto-texto"></div>
+
+    </div>
+
+    <script>
+
+      var customLabel = {
+        restaurant: {
+          label: 'R'
+        },
+        bar: {
+          label: 'B'
+        }
+      };
+
+      function initMap() {
+          
+          var map = new google.maps.Map(document.getElementById('map'), {
+          center: new google.maps.LatLng(-23.472435, -46.531028), // localidade do mapa
+          zoom: 17
+
+        });
+        var infoWindow = new google.maps.InfoWindow;
+
+          // Change this depending on the name of your PHP or XML file
+          downloadUrl('resultado.php', function(data) {// traz a posição do arquivo que eu quero no caso resultado.php
+            var xml = data.responseXML;
+            var markers = xml.documentElement.getElementsByTagName('marker');
+            Array.prototype.forEach.call(markers, function(markerElem) {
+              var name = markerElem.getAttribute('name');
+              var address = markerElem.getAttribute('address');
+              var type = markerElem.getAttribute('type');
+              var point = new google.maps.LatLng(
+                  parseFloat(markerElem.getAttribute('lat')),
+                  parseFloat(markerElem.getAttribute('lng')));
+
+              var infowincontent = document.createElement('div');
+              var strong = document.createElement('strong');
+              strong.textContent = name
+              infowincontent.appendChild(strong);
+              infowincontent.appendChild(document.createElement('br'));
+
+              var text = document.createElement('text');
+              text.textContent = address
+              infowincontent.appendChild(text);
+              var icon = customLabel[type] || {};
+              var marker = new google.maps.Marker({
+                map: map,
+                position: point,
+                label: icon.label
+              });
+              marker.addListener('click', function() {
+                infoWindow.setContent(infowincontent);
+                infoWindow.open(map, marker);
+              });
+            });
+          });
+        }
+    
+
+
+      function downloadUrl(url, callback) {
+        var request = window.ActiveXObject ?
+            new ActiveXObject('Microsoft.XMLHTTP') :
+            new XMLHttpRequest;
+
+        request.onreadystatechange = function() {
+          if (request.readyState == 4) {
+            request.onreadystatechange = doNothing;
+            callback(request, request.status);
+          }
+        };
+
+        request.open('GET', url, true);
+        request.send(null);
+      }
+
+      function doNothing() {} 
 
      
+
+    </script>
+    <!-- API do Google initmap -->
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAX36b6ygDLzjFh3vssGH9KiNSUo_YjLyA&callback=initMap">
+    </script>
     
-                    
-  </div>
+  </body>
+
+  <!--
+  kelly@celke.com.br - senha: 123
+
+  Posto Ipiranga
+Praça Cap. Alberto Mendes Júnior, S/N - Centro, Guarulhos - SP, 07090-090
+-23.472765, -46.531885
+
+Clínica de Fisioterapia ITC Vertebral
+R. Dr. Ramos de Azevedo, 159 - Sala 1201 - Centro, Guarulhos - SP, 07012-020
+-23.471499, -46.530818
+
+R. Barão de Mauá, 166 - Centro
+Guarulhos - SP
+-23.472301, -46.529262
+
+Centro Universitário Eniac
+R. Força Pública, 89 - Centro, Guarulhos - SP, 07012-030
+-23.472435, -46.531028 -->
+</html>

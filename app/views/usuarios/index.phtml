@@ -3,7 +3,9 @@
 		echo isset($this->menu) ? $this->menu->getMenu() : '';
 		echo (isset($this->alert) ? $this->alert : '');
 	?>
-	<table class="table">
+	<div class="container" style="position: relative; top:50px; right: 0; width: 700px; height: 200px;">
+		<div class="card-panel">
+	<table class="highlight">
 		<thead>
 			<tr>
 				<th>Nome</th>
@@ -18,29 +20,23 @@
 					foreach ($view_users as $user) : 
 			?>
 						<tr>
-							<!--Campo que imprime as variasveis dos usuários -->
-
 							<td><?php echo $user->name; ?></td>
 							<td><?php echo $user->email; ?></td>
 							<td><?php echo $user->username; ?></td>
 							<td>
 								<?php if ($user->status === 0) : ?>
-								
-								<!-- Botões com configuração excluir/bloquear/desbloquear -->
 									<a href="<?php echo BASE . 'usuarios/desbloquear/' . $user->id; ?>" class="btn btn-xs btn-success">
 										<i class="fa fa-unlock"></i> Desbloquear
 									</a>	
 								<?php else: ?>
-									<a href="<?php echo BASE . 'usuarios/bloquear/' . $user->id; ?>" class="btn btn-xs btn-warning">
+									<a href="<?php echo BASE . 'usuarios/bloquear/' . $user->id; ?>" class="btn orange btn-xs btn-warning">
 										<i class="fa fa-lock"></i> Bloquear
 									</a>
 								<?php endif; ?>
 								
-								<a href="<?php echo BASE . 'usuarios/excluir/' . $user->id; ?>" class="btn btn-xs btn-danger">
+								<a href="<?php echo BASE . 'usuarios/excluir/' . $user->id; ?>" class="btn red btn-xs btn-danger">
 									<i class="fa fa-trash"></i> Excluir
 								</a>
-
-
 							</td>
 						</tr>
 			<?php 
@@ -49,4 +45,6 @@
 			?>
 		</tbody>
 	</table>
+	</div>
+	</div>
 </div>

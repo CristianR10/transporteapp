@@ -17,6 +17,7 @@
     "dependencies": {
         "font-awesome": "^4.6.1",
         "bootstrap": "^3.3.6",
-        "jquery": "^2.2.3"
+        "jquery": "^2.2.3",
+        "materialize":"^1.0.0"
     }
 }

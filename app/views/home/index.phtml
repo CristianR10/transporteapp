@@ -1,5 +1,5 @@
-  <div class=""  >
-       <h4 class="alert alert-success">
+  <div class="" style="position: relative; top:-25px; right: 0; width: 100%;">
+       
                     <?php 
                         echo isset($this->menu) ? $this->menu->getMenu() : '';
                     ?>
@@ -8,20 +8,24 @@
                         Você foi Cadastrado com sucesso!
                     </h4>
                     Olá Colaborador <?php echo $view_user->name; ?>, seja bem vindo(a). <br>
+                    <h4 class="alert alert-success">
 
   </div>
 
       <link rel="stylesheet" type="text/css" href="cssaplic.css">
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">      
-      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/> 
+      <link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/> 
       <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
       <script type="text/javascript" src="js/materialize.js"></script>
 
     <style>     
       #map {
-        width:  100%;
         height: 1000px;
-        margin: 0;
+        margin: 10px;
+
+      }
+      #cartao{
+        margin: 20px;
       }
      
     </style>
@@ -39,10 +43,10 @@
         
       </form> -->
       <!--Código da versão 1.0-->
-    <div class="card">
+    <div class="card" id="cartao">
       <div class="card-image waves-effect waves-block waves-light">
         <!-- Execução do mapa -->
-        <div id="map"></div>
+        <div class="center "id="map"></div>
       </div>
     <div class="card-content">
       <span class="card-title activator grey-text text-darken-4">Pontos de passagem<i class="material-icons right">add_location</i></span>
